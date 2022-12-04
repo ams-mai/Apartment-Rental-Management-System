@@ -57,3 +57,4 @@ To access admin page, input this as the admin key:
 ```
 EdFer@12!90
 ```
+To access user page, kindly signup an account :)
