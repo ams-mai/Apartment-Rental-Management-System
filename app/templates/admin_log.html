@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/admin_log.css">
+    <title>Salazar Apartment | Admin</title>
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="Admin_log">
+        <center><p>Salazar Apartment</p></center>
+
+        <form action="/admin/" method= "POST">
+            <input type="password" id="admin_key" placeholder="Enter Admin Key" name="admin_key" required>
+            <button id="log">Log-in</button>
+            <br>
+        </form>
+        <form action="/login/" method="post">
+            <button>Back to log-in</button>
+        </form>
+    </div>
+
+
+{% endblock %}
+

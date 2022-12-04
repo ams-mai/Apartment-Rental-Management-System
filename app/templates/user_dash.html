@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <!-- <script src="/static/js/script.js"></script> -->
+    <link rel="stylesheet" href="/static/css/user_dash.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js">   -->
+
+    <title>Salazar Apartment</title>
+{% endblock %}
+
+{% block body %}
+    <div class="top_bar">
+        <button id="homeButton" onclick="showMenu()"><i class="fa-solid fa-house"></i></button>
+        <span id="welcome">Welcome back, {{user.fullname}}</span>
+        <span><form action="/logout"><button id="outButton"><i class="fa-solid fa-power-off"></i></button></form></span>
+    </div>
+
+    <div id="container" style="display: block;">
+        <div class="head">Salazar Apartment</div>
+            <ul>
+                <li><button class="menuBtn" id="profile_link" onclick="show(0)">Profile<i class="fa-solid fa-user"></i></button></li>
+                <li><button class="menuBtn" id="payments_link" onclick="show(1)">Payments<i class="fa-regular fa-money-bill-1"></i></button></li>
+                <li><button class="menuBtn" id="announce_link" onclick="viewAnnouncement()">Announcement<i class="fa-solid fa-bullhorn"></i></button></li>
+                <li><button class="menuBtn" id="report_link" onclick="viewReport()">Report<i class="fa-solid fa-comment-dots"></i></button></li>
+                <li><button class="menuBtn" id="feedback_link" onclick="viewFeedback()">Send Feedback<i class="fa-solid fa-comments"></i></button></li>
+            </ul>
+            
+        <!-- <ol>
+            <li><a href="#" id="profile_link">Profile<i class="fa-solid fa-user"></i></a></li>
+            <li><a href="#" id="payments_link">Payments<i class="fa-regular fa-money-bill-1"></i></a></li>
+            <li><a href="#" id="announce_link">Announcement<i class="fa-solid fa-bullhorn"></i></a></li>
+            <li><a href="#" id="report_link">Report<i class="fa-solid fa-comment-dots"></i></a></li>
+            <li><a href="#" id="feedback_link">Send Feedback<i class="fa-solid fa-comments"></i></a></li>
+        </ol> -->
+    </div>
+    <div id="Profile" style="display: none;">
+        <div id="upper1">
+            <!-- <form action="/update" class="profile1" method="post"> -->
+                <label for="user_fullname">Full Name:</label>
+                <input type="text" name="user_fullname" value={{user.fullname}} disabled>
+                <label for="user_address">Address:</label>
+                <input type="text" name="user_address" value={{user.address}} disabled>
+                <label for="user_mobile">Mobile Number:</label>
+                <input type="number" name="user_mobile" value={{user.mobile}} disabled>
+                <label for="user_guardian">Guardian:</label>
+                <input type="text" name="user_guardian" value={{user.guardian}} disabled>
+                <label for="user_guardian_num">Guardian Mobile:</label>
+                <input type="number" name="user_guardian_num" value={{user.guardian_num}} disabled>
+                <br>
+                <label for="user_school">School:</label>
+                <input type="text" name="user_school" value={{user.school}} disabled>
+                <label for="user_year">Year Level:</label>
+                <input type="text" name="user_year" value={{user.yearLevel}} disabled>
+                <br>
+                <label for="user_email">Email:</label>
+                <input type="text" name="user_email" value={{user.email}} disabled>
+                <br>
+                <!-- <form action="/edit"> -->
+                <button id="edit_profile">EDIT</button>
+                <button id="save_profile">SAVE</button>
+            <!-- </form> -->
+
+            <!-- <i class="fa-solid fa-id-card-clip"></i>
+            <i class="fa-solid fa-location-dot"></i>
+            <i class="fa-solid fa-address-book"></i>
+            <i class="fa-solid fa-house-chimney-window"></i> -->
+        </div>
+        <div id="upper2" style="display: none;">
+            <form action="" class="profile2">
+                <label for="user_fullname">Full Name:</label>
+                <input type="text" name="user_fullname" value={{user.fullname}} editable="true">
+                <label for="user_address">Address:</label>
+                <input type="text" name="user_address" value={{user.address}} editable="true">
+                <label for="user_mobile">Mobile Number:</label>
+                <input type="number" name="user_mobile" value={{user.mobile}} editable="true">
+                <label for="user_guardian">Guardian:</label>
+                <input type="text" name="user_guardian" value={{user.guardian}} editable="true">
+                <label for="user_guardian_num">Guardian Mobile:</label>
+                <input type="number" name="user_guardian_num" value={{user.guardian_num}} editable="true">
+                <br>
+                <label for="user_school">School:</label>
+                <input type="text" name="user_school" value={{user.school}} editable="true">
+                <label for="user_year">Year Level:</label>
+                <input type="text" name="user_year" value={{user.yearLevel}} editable="true">
+                <br>
+                <label for="user_email">Email:</label>
+                <input type="text" name="user_email" value={{user.email}} editable="true">
+                <label for="user_password">Password:</label>
+                <input type="text">
+
+                <button id="back_profile">BACK</button>
+            </form>
+        </div>
+    </div>
+    <div id="Payments" style="display: none;">
+        Hello there Payments
+    </div>
+    <div id="Announcement" style="display: none;">
+        Hello there Announcements
+    </div>
+    <div id="Report" style="display: none;">
+        Hello there Report
+    </div>
+    <div id="Feedback" style="display: none;">
+        Hello there Feedback
+    </div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>        
+
+{% endblock %}
+
+
+

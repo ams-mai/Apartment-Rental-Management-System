@@ -1,0 +1,76 @@
+`{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Salazar Apartment</title>
+{% endblock %}
+
+{% block body %}
+
+    <div class="all">
+        <div class="Sign-up" id="box1">
+            <center><p id="welcome">Welcome to</p></center>
+            <center><p>Salazar Apartment</p></center>
+    
+            <form  action="/signup/" method="POST">
+    
+                <label for="fullname" id="PersonalInfo">Personal Information:</label>
+                <input type="text" placeholder="Full Name" name="fullname" required>
+                <input type="text" placeholder="Home Address" name="address" required>
+                <input type="number" placeholder="Mobile Number" name="number" required>
+                <input type="text" placeholder="Guardian Name" name="guardian" required>
+                <input type="number" placeholder="Guardian Mobile Number" name="guardian_number" required>
+                <br>
+    
+                <label for="school">Education:</label>
+                <select name="school" required>
+                    <option value="" disabled selected hidden>School Name</option>
+                    <option value="BSU Main">Batangas State University - Main Campus</option>
+                    <option value="BSU Alangilan">Batangas State University - Alangilan Campus</option>
+                    <option value="Westmead">Westmead International</option>
+                    <option value="Sunhill">Sunhill International College</option>
+                    <option value="Others">Others</option>
+                </select>
+                <select name="year" required>
+                    <option value="" disabled selected hidden>Year Level</option>
+                    <option value="First Year">First Year</option>
+                    <option value="Second Year">Second Year</option>
+                    <option value="Third Year">Third Year</option>
+                    <option value="Fourth Year">Fourth Year</option>
+                    <option value="Fifth Year">Fifth Year</option>
+                </select>
+                <br>
+        </div>
+        <div class="Sign-up" id="box2">
+    
+            <form  action="/signup/" method="POST">
+                <br><br><br><br><br><br><br>
+    
+                <label for="unit">Unit:</label>
+                <select name="unit" required>
+                    <option value="" disabled selected hidden>Unit Number</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+    
+                <input type="email" placeholder="Enter Email" name="e-mail" required>
+                <input type="password" placeholder="Enter Password" name="pw" required>
+                <button type="submit">Sign-up</button>
+    
+                <label class="remember" id="checkBox">
+                    <input type="checkbox" checked="checked" id="autologin" name="remember"> Remember me
+                </label>
+            </form>
+            <form action="/user/already" method="post">
+                <button id="already">I already have an account</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

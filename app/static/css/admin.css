@@ -1,0 +1,756 @@
+*{
+    font-family: Arial;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    height: 100%;
+    margin: 0;
+    /* background-color: rgb(95, 138, 95); */
+    background-image: url(/static/images/img_1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    /* overflow-x: hidden; */
+}
+
+/*--------- NAVBAR CSS -------- */
+.topbar{
+    width: 100%;
+    height: 50px;
+    background-color: #187245;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    position: fixed;
+}
+
+/*--------- Notifications -------- */
+#homeButton{
+    font-size: 30px;
+    color: white;
+    padding: 10px;
+}
+#homeButton:hover {
+    cursor: pointer;
+}
+#Notifications{
+    top: 0;
+    margin-top: 50px;
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    background-color: #0a442767;
+    z-index: 1;
+    overflow-y: scroll;
+}
+#notif_content {
+    background-color: white;
+    width: 80%;
+    height: 70px;
+    border-radius: 10px;
+    margin: 10%;
+    margin-bottom: 2%;
+    padding: 5px;
+}
+#notif_button {
+    display: inline-flex;
+    width: 100%;
+    margin: 0 0 0 21%;
+}
+#confirm_form {
+    margin-right: 5%;
+    margin-left: 5%;
+}
+#confirm_notif {
+    background-color: white;
+    color: #187245;
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+}
+#reject_notif {
+    background-color: red;
+    color: white;
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    padding: 0 10px;
+}
+#notif_content p {
+    color: black;
+    font-size: 10px;
+}
+
+/*--------- Menu List -------- */
+.menu .menulist{
+    display: flex;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+}
+
+.menu .menulist li{
+    list-style-type: none;
+    width: auto;
+}
+
+.menubuttons{
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    color: white;
+    width: auto;
+    padding: 0 20px 0 20px;
+    height: 50px;
+    font-size: larger;
+}
+
+.menubuttons:hover{
+    background-color: #3cc781;
+    border-radius: 5px;
+}
+
+.menulist.units{
+    width: 100%;
+    height: 100px;
+}
+
+.menulist.units.unitlist{
+    width: 100%;
+}
+
+/* @keyframes dropdown {
+    from {top: -1px; opacity: 0%;}
+    to {top: 0; opacity: 100%;}
+} */
+
+.unitlist{
+    display: none;
+    padding: 0;
+    position: relative;
+    /* animation: dropdown 0.3s ease; */
+}
+
+.unitlist li{
+    width: 100%;
+}
+
+.unitlist button{
+    width: 100%;
+    background-color: #187245;
+    color: white;
+    border: none;
+    padding: 10px 0 10px 0;
+    font-size: larger;
+
+}
+
+.unitlist button:hover{
+    background-color: #3cc781;
+}
+
+.unitlist i{
+    padding-left: 10px;
+}
+
+#unit1{
+    width: 100%;
+}
+
+#outButton{
+    width: 3%;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 30px;
+    position: fixed;
+    right: 0px;
+}
+
+/*------- END OF NAVBAR CSS --------*/
+
+
+
+/* ----- Table of Tenants ----- */
+.submenu{
+    display: none;
+    position: absolute;
+    float: right;
+    height: 390px;
+    width: 89%;
+    background-color: #0f3321af;
+    color: white;
+    right: 0;
+    top: -3.5%;
+    padding: 20px;
+}
+
+.submenu table{
+    border: 3px solid #187245;
+    background-color: #187245;
+    width: 100%;
+    text-align: left;
+    margin: 0;
+    padding: 10px;
+    font-size: larger;
+    text-align: center;
+}
+
+.submenu table tr{
+    padding: 20px;
+}
+
+.submenu table th{
+    /* padding: 10px; */
+    /* width: 12.5%; */
+    background-color: #187245;
+    margin: 0;
+    padding: 15px 0 15px 10px;
+    /* border-right: 1px solid white; */
+}
+
+.submenu table tr td{
+    /* padding: 10px; */
+    /* border-right: 3px solid #187245; */
+    background-color: white;
+    color: #187245;
+    margin: 0;
+    padding: 15px 0 15px 10px;
+    overflow-y: hidden;
+    width: 12.5%;
+    border-right: 1px solid #187245;
+}
+
+.minusButton{
+    border: none;
+    color: white;
+    background-color: #187245;
+    border-radius: 5px;
+    box-shadow: 0 3px black;
+    margin-right: 20px;
+}
+
+.minusButton i{
+    text-align: center;
+    padding: 10px 5px;
+}
+
+.minusButton:hover{
+    background-color: #04AA6D;
+}
+
+.minusButton:active{
+    box-shadow: none;
+    transform: translateY(4px);
+}
+
+/* ---- MODAL: REMOVE TENANTS ---- */
+.modal{
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.466);
+}
+#remove_move{
+    max-width: 400px;
+    background-color: #187245;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+#remove_move::backdrop{
+    background-color: black;
+    backdrop-filter: opacity(100%);
+}
+
+.removalBtn{
+    padding: 5px 10px;
+    border: none;
+    background-color: rgb(150, 48, 48);
+    border-radius: 10px;
+    color: white;
+}
+
+#move{
+    background-color: rgb(236, 175, 62);
+}
+
+#closeBtn{
+    position: relative;
+    left: 300px;
+}
+
+#choices{
+    display: flex;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.removalChoices{
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.removalChoices{
+    width: 100%;
+}
+
+/* ----- End of Table of Tenants ----- */
+
+/* ---- ANNOUNCEMENTS ---- */
+.annSubmenu{
+    /* display: none; */
+    position: absolute;
+    float: right;
+    height: 390px;
+    width: 89%;
+    background-color: #0f3321af;
+    color: white;
+    right: 0;
+    top: 5%;
+    padding: 20px;
+}
+
+#annInfo{
+    height: 750px;
+    background-color: #187245;
+    position: fixed;
+}
+
+.annContainer{
+    height: 100%;
+    width: 100%;
+    /* background-color: rgba(255, 255, 255, 0); */
+    border: 2px solid #d0ffe8;
+    background-color: #187245;
+    border-radius: 20px;
+    padding: 30px;
+    color: white;
+    position: relative;
+    min-width: 400px;
+}
+
+.announcements{
+    width: 96.3%;
+    background-color: #187245;
+    border: 2px solid #3cc781;
+    border-radius: 10px;
+    padding: 20px;
+    /* margin-bottom: 30px; */
+    position: absolute;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.announcements i{
+    padding-right: 10px;
+}
+
+.annSubmenu table{
+    width: 100%;
+}
+
+.annSubmenu table tr{
+    height: 40px;
+}
+
+.annSubmenu table th{
+    background-color: #187245;
+    padding-left: 20px;
+}
+
+.annSubmenu table td{
+    padding: 10px 50px 10px 20px;
+    background-color: #04aa6d77;
+    border-bottom: 1px solid #187245;
+    text-align: justify;
+}
+
+.annInput{
+    position: absolute;
+    bottom: 90px;
+    /* top: 550px; */
+    left: 20px;
+    width: 100%;
+    /* margin: 0 20px; */
+}
+
+.annInput textarea{
+    resize: none;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #3cc781;
+    width: 96.3%;
+}
+
+.annPost{
+    position: absolute;
+    bottom: 20px;
+}
+
+.annPost input{
+    text-decoration: none;
+    background-color: white;
+    border: 2px solid #187245;
+    color: #187245;
+    border-radius: 5px;
+    padding: 5px 20px;
+}
+
+.annPost input:hover{
+    background-color: #04AA6D;
+    border-color: #04AA6D;
+    color: white;
+}
+
+#alert{
+    position: fixed;
+    top: 50px;
+    /* margin-left: auto;
+    margin-right: auto;
+    width: 50%; */
+}
+
+@keyframes fadeIn {
+    from {top: 0px;}
+    to {top: 50px;}
+}
+
+/* -----------REPORTS-------------- */
+.repSubmenu{
+    position: absolute;
+    float: right;
+    height: 50%;
+    width: 77%;
+    background-color: #0f3321af;
+    color: white;
+    right: 0;
+    top: -30px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.reports{
+    width: 100%;
+    height: 100%;
+    background-color: #187245;
+    border: 2px solid #3cc781;
+    border-radius: 10px;
+    padding: 20px;
+    /* margin-bottom: 30px; */
+    position: relative;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.reports i{
+    padding-right: 10px;
+}
+
+.repSubmenu table{
+    width: 100%;
+    position: relative;
+}
+
+.repSubmenu table tr{
+    height: 40px;
+}
+
+.repSubmenu table th{
+    background-color: #187245;
+    padding-left: 20px;
+}
+
+.repSubmenu table td{
+    padding: 10px 50px 10px 20px;
+    background-color: #04aa6d77;
+    border-bottom: 1px solid #187245;
+    text-align: justify;
+}
+
+/* Feedback */
+.feedSubmenu{
+    position: absolute;
+    float: right;
+    height: 50%;
+    width: 69%;
+    background-color: #0f3321af;
+    color: white;
+    right: 0;
+    top: -30px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.feedbacks{
+    width: 100%;
+    height: 100%;
+    background-color: #187245;
+    border: 2px solid #3cc781;
+    border-radius: 10px;
+    padding: 20px;
+    /* margin-bottom: 30px; */
+    position: relative;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.feedbacks i{
+    padding-right: 10px;
+}
+
+.feedSubmenu table{
+    width: 100%;
+    position: relative;
+}
+
+.feedSubmenu table tr{
+    height: 40px;
+}
+
+.feedSubmenu table th{
+    background-color: #187245;
+    padding-left: 20px;
+}
+
+.feedSubmenu table td{
+    padding: 10px 50px 10px 20px;
+    background-color: #04aa6d77;
+    border-bottom: 1px solid #187245;
+    text-align: justify;
+}
+
+/* Send Bills */
+.billSubmenu{
+    position: absolute;
+    float: right;
+    height: 50%;
+    width: 59%;
+    background-color: #0f3321af;
+    color: white;
+    right: 0;
+    top: -30px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.sendBills{
+    min-width: 100%;
+    height: 100%;
+    background-color: #187245;
+    border: 2px solid #3cc781;
+    border-radius: 10px;
+    padding: 20px 20%;
+    /* margin-bottom: 30px; */
+    position: relative;
+    max-height: 500px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.billInputs{
+    padding: 0px 10rem;
+    width: 100%;
+    display: grid;
+    row-gap: .5rem;
+    box-sizing: border-box;
+}
+.billInputs input {
+    height: 30px;
+    border-radius: 10px;
+}
+.billInputs select {
+    height: 30px;
+    border-radius: 10px;
+}
+.send{
+    padding: 0px 16rem;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.send input{
+    position: relative;
+    min-width: 100%;
+    /* width: 20%; */
+    padding: 5px 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #187245;
+    border: 1px solid white;
+    color: white;
+    box-shadow: 0 3px 3px #181818;
+}
+
+.send input:hover{
+    border: 1px solid #04AA6D;
+
+}
+
+.send input:active{
+    box-shadow: none;
+    transform: translateY(3px);
+}
+
+/* ---- WEBSITE NAME ---- */
+#salazar{
+    color: white;
+    margin-top: 80px;
+    margin-bottom: 30px;
+    padding: 20px 0 20px 0;
+    /* height: 200px; */
+    font-size: 100px;
+    text-align: center;
+    /* min-width: 892px; */
+    background-color: #0a442767;
+    max-width: 50%;
+    /* text-align: center; */
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 820px){
+    #salazar{
+        font-size: 40px;
+    }
+}
+
+/* ------ BILLINGS ----- */
+#total{
+    text-align: center;
+    color: white;
+    width: 100%;
+    margin: 0;
+}
+
+#totalTxt{
+    text-align: center;
+    background-color: rgb(24, 114, 69);
+    width: 40%;
+    padding: 20px 0 20px 0;
+    /* margin: 20px 0 20px 0; */
+    border-radius: 20px;
+    min-width: 520px;
+}
+
+.totalAmount{
+    font-size: 300%;
+}
+
+#bills{
+    display: flex;
+    margin: 40px 40px 0 40px;
+    min-width: 309px;
+}
+
+.Bills{
+    text-align: center;
+    background-color: rgb(38, 187, 100);
+    color: white;
+    width: 25%;
+    height: 200px;
+    margin: 0 20px 0 20px;
+    border-radius: 20px;
+    min-width: 309px;
+}
+
+.b1{
+    font-size: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: rgb(24, 114, 69);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.b2{
+    font-size: 30px;
+    padding-top: 25px;
+    padding-bottom: 30px;
+    text-align: center;
+
+}
+
+.viewButton{
+    background-color: #04AA6D;
+    border: none;
+    color: #fff;
+    padding: 10px 30px;
+    text-decoration: none;
+    margin: 20px 0 0 0;
+    cursor: pointer;
+    font-size: 18px;
+    /* border: 3px solid #04AA6D; */
+    border-radius: 10px;
+    box-shadow: 0 5px #181818;
+}
+
+.viewButton:hover{
+    background-color: #187245;
+    color: white;
+}
+
+.viewButton:active {
+    background-color: #04AA6D;
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+
+/* ---- View Paid ---- */
+.viewInfo{
+    display: none;
+}
+.viewInfo table{
+    width: 100%;
+    border: 3px solid #187245;
+    background-color: #187245;
+    margin: 20px 0 0 0;
+    color: #187245;
+    text-align: left;
+    padding: 0;
+}
+
+.viewInfo th{
+    background-color: #187245;
+    color: white;
+    padding: 5px;
+    margin: 0;
+    border: none;
+}
+
+.viewInfo td{
+    background-color: white;
+    padding: 5px;
+    border: none;
+}
+
+.otherInfo{
+    background-color: white;
+    height: 200px;
+    width: 100%;
+    padding-bottom: 1000px;
+}
+
+#info{
+    background-color: white;
+    height: 200px;
+    width: 100%;
+}
+

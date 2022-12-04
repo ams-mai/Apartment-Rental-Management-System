@@ -1,0 +1,538 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <title>Admin</title>
+{% endblock %}
+
+{% block body %}
+    <!-- Navigation Bar  -->
+    <div class="topbar">
+        <div class="menu">
+            <ul class="menulist">
+                <li><i id="homeButton" class="fa-solid fa-envelope"></i></li>
+                <li><button id="tenantButton" class="menubuttons"><i class="fa-solid fa-user" style="font-size: 15px; padding-right: 5px;"></i> Tenants <i class="bi bi-caret-down-fill"></i></button>
+                    <div class="units">
+                        <ul id="unitinfo" class="unitlist">
+                            <li><button id="unit1">Unit 1 <i class="fa-sharp fa-solid fa-caret-right"></i></button></li>
+                            <li><button id="unit2">Unit 2 <i class="fa-sharp fa-solid fa-caret-right"></i></button></li>
+                            <li><button id="unit3">Unit 3 <i class="fa-sharp fa-solid fa-caret-right"></i></button></li>
+                            <li><button id="unit4">Unit 4 <i class="fa-sharp fa-solid fa-caret-right"></i></button></li>
+                            <li><button id="unit5">Unit 5 <i class="fa-sharp fa-solid fa-caret-right"></i></button></li>
+                            <li><button id="unit6">Unit 6 <i class="fa-sharp fa-solid fa-caret-right"></i></button></li>
+                            <li><button id="unit7">Unit 7 <i class="fa-sharp fa-solid fa-caret-right"></i></button></li>
+                            <li><button id="unit8">Unit 8 <i class="fa-sharp fa-solid fa-caret-right"></i></button></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><button id="annButton" class="menubuttons"><i class="fa-solid fa-bullhorn" style="font-size: 15px; padding-right: 5px;"></i> Announcements <i class="bi bi-caret-down-fill"></i></button></li>
+                <li><button id="repButton" class="menubuttons"><i class="fa-regular fa-flag" style="font-size: 15px; padding-right: 5px;"></i> Reports <i class="bi bi-caret-down-fill"></i></button></li>
+                <li><button id="feedButton" class="menubuttons"><i class="fa-solid fa-comments" style="font-size: 15px; padding-right: 5px;"></i> Feedbacks <i class="bi bi-caret-down-fill"></i></button></li>
+                <li><button id="sendBill" class="menubuttons"><i class="fa-solid fa-money-bills" style="font-size: 15px; padding-right: 5px;"></i> Send Bills <i class="bi bi-caret-down-fill"></i></button></li>
+            </ul>
+        </div>
+        <div id="outBtn">
+            <form action="/logout"><button id="outButton"><i class="fa-solid fa-power-off"></i></button></form>
+        </div>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div id="Notifications" style="display: none;">
+        {% for notif in admin_notif %}
+        <div id="notif_div"> 
+            <div id="notif_content">
+                <p>
+                    {{notif.paidBy}} paid Php {{notif.amount}} for {{notif.billType}} of {{notif.month}}.
+                    <br><br> {{notif.date_created}}
+                </p>
+            </div>
+            
+            <div id="notif_button">
+                <form id="confirm_form" action="/admin/confirm-payment" method="post"><button id="confirm_notif">confirm</button></form>        
+                <form action="/admin/reject-payment" method="post"><button id="reject_notif">reject</button></form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Submenu for different units -->
+    <div id="sub1" class="submenu">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Contact #</th>
+                <th>Year Level</th>
+                <th>School</th>
+                <th>Guardian</th>
+                <th>Guardian #</th>
+                <th>Address</th>
+            </tr>
+            {% for tenants in unit1 %}
+            <tr>
+                <td>{{tenants.fullname}}</td>
+                <td>{{tenants.mobile}}</td>
+                <td>{{tenants.yearLevel}}</td>
+                <td>{{tenants.school}}</td>
+                <td>{{tenants.guardian}}</td>
+                <td>{{tenants.guardian_num}}</td>
+                <td>{{tenants.address}}</td>
+                <td><button id="minus" class="minusButton"><i class="fa-regular fa-square-minus"></i></button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="sub2" class="submenu">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Contact #</th>
+                <th>Year Level</th>
+                <th>School</th>
+                <th>Guardian</th>
+                <th>Guardian #</th>
+                <th>Address</th>
+            </tr>
+            {% for tenants in unit2 %}
+            <tr>
+                <td>{{tenants.fullname}}</td>
+                <td>{{tenants.mobile}}</td>
+                <td>{{tenants.yearLevel}}</td>
+                <td>{{tenants.school}}</td>
+                <td>{{tenants.guardian}}</td>
+                <td>{{tenants.guardian_num}}</td>
+                <td>{{tenants.address}}</td>
+                <td><button id="minus" class="minusButton"><i class="fa-regular fa-square-minus"></i></button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="sub3" class="submenu">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Contact #</th>
+                <th>Year Level</th>
+                <th>School</th>
+                <th>Guardian</th>
+                <th>Guardian #</th>
+                <th>Address</th>
+            </tr>
+            {% for tenants in unit3 %}
+            <tr>
+                <td>{{tenants.fullname}}</td>
+                <td>{{tenants.mobile}}</td>
+                <td>{{tenants.yearLevel}}</td>
+                <td>{{tenants.school}}</td>
+                <td>{{tenants.guardian}}</td>
+                <td>{{tenants.guardian_num}}</td>
+                <td>{{tenants.address}}</td>
+                <td><button id="minus" class="minusButton"><i class="fa-regular fa-square-minus"></i></button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="sub4" class="submenu">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Contact #</th>
+                <th>Year Level</th>
+                <th>School</th>
+                <th>Guardian</th>
+                <th>Guardian #</th>
+                <th>Address</th>
+            </tr>
+            {% for tenants in unit4 %}
+            <tr>
+                <td>{{tenants.fullname}}</td>
+                <td>{{tenants.mobile}}</td>
+                <td>{{tenants.yearLevel}}</td>
+                <td>{{tenants.school}}</td>
+                <td>{{tenants.guardian}}</td>
+                <td>{{tenants.guardian_num}}</td>
+                <td>{{tenants.address}}</td>
+                <td><button id="minus" class="minusButton"><i class="fa-regular fa-square-minus"></i></button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="sub5" class="submenu">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Contact #</th>
+                <th>Year Level</th>
+                <th>School</th>
+                <th>Guardian</th>
+                <th>Guardian #</th>
+                <th>Address</th>
+            </tr>
+            {% for tenants in unit5 %}
+            <tr>
+                <td>{{tenants.fullname}}</td>
+                <td>{{tenants.mobile}}</td>
+                <td>{{tenants.yearLevel}}</td>
+                <td>{{tenants.school}}</td>
+                <td>{{tenants.guardian}}</td>
+                <td>{{tenants.guardian_num}}</td>
+                <td>{{tenants.address}}</td>
+                <td><button id="minus" class="minusButton"><i class="fa-regular fa-square-minus"></i></button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="sub6" class="submenu">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Contact #</th>
+                <th>Year Level</th>
+                <th>School</th>
+                <th>Guardian</th>
+                <th>Guardian #</th>
+                <th>Address</th>
+            </tr>
+            {% for tenants in unit6 %}
+            <tr>
+                <td>{{tenants.fullname}}</td>
+                <td>{{tenants.mobile}}</td>
+                <td>{{tenants.yearLevel}}</td>
+                <td>{{tenants.school}}</td>
+                <td>{{tenants.guardian}}</td>
+                <td>{{tenants.guardian_num}}</td>
+                <td>{{tenants.address}}</td>
+                <td><button id="minus" class="minusButton"><i class="fa-regular fa-square-minus"></i></button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="sub7" class="submenu">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Contact #</th>
+                <th>Year Level</th>
+                <th>School</th>
+                <th>Guardian</th>
+                <th>Guardian #</th>
+                <th>Address</th>
+            </tr>
+            {% for tenants in unit7 %}
+            <tr>
+                <td>{{tenants.fullname}}</td>
+                <td>{{tenants.mobile}}</td>
+                <td>{{tenants.yearLevel}}</td>
+                <td>{{tenants.school}}</td>
+                <td>{{tenants.guardian}}</td>
+                <td>{{tenants.guardian_num}}</td>
+                <td>{{tenants.address}}</td>
+                <td><button id="minus" class="minusButton"><i class="fa-regular fa-square-minus"></i></button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="sub8" class="submenu">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Contact #</th>
+                <th>Year Level</th>
+                <th>School</th>
+                <th>Guardian</th>
+                <th>Guardian #</th>
+                <th>Address</th>
+            </tr>
+            {% for tenants in unit8 %}
+            <tr>
+                <td>{{tenants.fullname}}</td>
+                <td>{{tenants.mobile}}</td>
+                <td>{{tenants.yearLevel}}</td>
+                <td>{{tenants.school}}</td>
+                <td>{{tenants.guardian}}</td>
+                <td>{{tenants.guardian_num}}</td>
+                <td>{{tenants.address}}</td>
+                <td><button id="minus" class="minusButton"><i class="fa-regular fa-square-minus"></i></button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <!-- Modal: Removal of Tenants -->
+    <div class="modal">
+        <dialog id="remove_move">
+            <div class="closeBtnDiv">
+                <button class="removalBtn" id="closeBtn">Close</button>
+            </div>
+            <div id="choices">
+                <div class="removalChoices">
+                    <p>Do you want to remove this tenant from the unit?</p>
+                <form action="/admin/remove" method="post">
+                    <button class="removalBtn" id="remove">REMOVE</button>
+                </form>
+                </div>
+            </div>
+        </dialog>
+    </div>
+    
+
+    <!-- Announcement Info Div -->
+    <form action="/admin/posts" method="post">
+    <div id="annInfo" class="annSubmenu" style="display: none;">
+        <div class="announcements">
+            <table id="annTbl">
+                <tr>
+                    <th>Announcements</th>
+                    <th>Date Created</th>
+                </tr>
+            {% for new_post in new_post %}
+                <tr>
+                    <td width="800px"><i class="fa-sharp fa-solid fa-scroll"></i>{{new_post.posts}}</td>
+                    <td width="200px">{{new_post.date_posted.date()}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+        <div class="annInput">
+            <textarea rows="3" cols="1" name="annInput" wrap ="hard" placeholder="Write something to announce..." required></textarea>
+        </div>
+        <div id="post" class="annPost">
+            <input type="submit" value="Post">
+        </div>
+    </div>
+    </form>
+
+    <div id="alert" class="alert alert-success" role="alert" style="display: none;">
+        Announcement successfully added!
+    </div>
+
+    <!-- Reports Viewer -->
+    <form action="/admin/reports" method="post">
+        <div id="repInfo" class="repSubmenu" style="display: none;">
+            <div class="reports">
+                <table id="repTbl">
+                    <tr>
+                        <th>Reports</th>
+                        <th>Date Created</th>
+                        <th>By</th>
+                        <th>Unit</th>
+                    </tr>
+                {% for reports in viewReports %}
+                    <tr>
+                        <td width="800px"><i class="fa-sharp fa-solid fa-scroll"></i>{{reports.reports}}</td>
+                        <td width="100px">{{reports.date_reported}}</td>
+                        <td width="200px">{{reports.by}}</td>
+                        <td width="100px">{{reports.reporter.unit}}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+    </form>
+
+
+    <!--  Feeback Viewer -->
+    <form action="/admin/feedbacks" method="post">
+        <div id="feedInfo" class="feedSubmenu" style="display: none;">
+            <div class="feedbacks">
+                <table id="feedTbl">
+                    <tr>
+                        <th>Feedbacks</th>
+                        <th>Date Created</th>
+                        <th>By</th>
+                        <th>Unit</th>
+                    </tr>
+                {% for feedback in viewFeedbacks %}
+                    <tr>
+                        <td width="800px"><i class="fa-sharp fa-solid fa-scroll"></i>{{feedback.feedbacks}}</td>
+                        <td width="100px">{{feedback.date_sent}}</td>
+                        <td width="200px">{{feedback.by}}</td>
+                        <td width="100px">{{feedback.feedbacker.unit}}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+    </form>
+
+    <!-- Bills Sender -->
+    <form action="/admin/bills" method="post">
+        <div id="billInfo" class="billSubmenu" style="display: none;">
+            <div class="sendBills">
+                <section>
+                    <div class="billInputs">
+                        <label for="unit">Unit</label>
+                        <select name="unit" required>
+                            <option value="" disabled selected hidden>Unit Number</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                        <label for="waterBill">Water Bill</label>
+                        <input type="number" step="0.01" name="waterBill" id="waterBill" required>
+                        <label for="electricBill">Electric Bill</label>
+                        <input type="number" step="0.01" name="electricBill" id="electricBill" required>
+                        <label for="wifiBill">Wifi Bill</label>
+                        <input type="number" step="0.01" name="wifiBill" id="wifiBill" required>
+                        <label for="month">Month</label>
+                        <select name="month" required>
+                            <option value="" disabled selected hidden>Select Month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </div>
+                        <div class="send">
+                            <input id="send_input" type="submit" value="Send" >
+                        </div>
+                </section>
+            </div>
+        </div>
+    </form>
+    
+    
+    <div id="salazar">Salazar Apartment</div>
+
+    <!-- Total Bill Collection -->
+    <div id="total">
+        <center><div id="totalTxt">
+            <div id="totalCol"><p><strong>TOTAL COLLECTED FOR THE MONTH:</strong></p></div>
+            <div id="totalVal">
+                <i class="fa-solid fa-wallet" style="font-size: 300%;"></i>
+                <span class="totalAmount"> &#8369 </span>
+                <span class="totalAmount" id="totalAmount">{{rent}}</span>
+            </div>
+        </div></center>
+    </div>
+
+    <!-- Billings -->
+    <div id="bills">
+        <div class="Bills" id="rBills">
+            <div class="b1" id="rb1">
+                <i class="fas fa-money-bill-wave-alt"></i>
+                 Rents Paid: </div>
+            <div class="b2" id="rb2">&#8369 <span>{{rents_paid}}</span></div>
+            <button class="viewButton" id="rButton">View</button>   
+            <div class="viewInfo" id="rentBillstbl">
+                <table>
+                    <tr class="tRow">
+                        <th class="tHeader">Name</th>
+                        <th class="tHeader">Unit</th>
+                        <th class="tHeader">Paid</th>
+                        <th class="tHeader">Month</th>
+                    </tr>
+                {% for tenant in paid_tenants_r %}    
+                    <tr class="tRow">
+                        <td class="tData">{{tenant.name}}</td>
+                        <td class="tData">{{tenant.unit}}</td>
+                        <td class="tData">Yes</td>
+                        <td class="tData">{{tenant.month}}<span></span></td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="Bills" id="eBills">
+            <div class="b1" id="eb1">
+                <i class="fas fa-bolt"></i>
+                 Electric Bills Paid: </div>
+            <div class="b2" id="eb2">&#8369 <span>{{e_bills_paid}}</span></div>
+            <button class="viewButton" id="eButton" type="button">View</button>
+            <div class="viewInfo" id="eBillstbl">
+                <table>
+                    <tr class="tRow">
+                        <th class="tHeader">Name</th>
+                        <th class="tHeader">Unit</th>
+                        <th class="tHeader">Paid</th>
+                        <th class="tHeader">Month</th>
+                    </tr>
+                {% for tenant in paid_tenants_e %}    
+                    <tr class="tRow">
+                        <td class="tData">{{tenant.name}}</td>
+                        <td class="tData">{{tenant.unit}}</td>
+                        <td class="tData">Yes</td>
+                        <td class="tData">{{tenant.month}}<span></span></td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="Bills" id="wBills">
+            <div class="b1" id="wb1">
+                <i class="fas fa-tint"></i>
+                 Water Bills Paid: </div>
+            <div class="b2" id="wb2">&#8369 <span>{{w_bills_paid}}</span></div>
+            <button class="viewButton" id="wButton" type="button">View</button>
+            <div class="viewInfo" id="wBillstbl">
+                <table>
+                    <tr class="tRow">
+                        <th class="tHeader">Name</th>
+                        <th class="tHeader">Unit</th>
+                        <th class="tHeader">Paid</th>
+                        <th class="tHeader">Month</th>
+                    </tr>
+                {% for tenant in paid_tenants_wa %}    
+                    <tr class="tRow">
+                        <td class="tData">{{tenant.name}}</td>
+                        <td class="tData">{{tenant.unit}}</td>
+                        <td class="tData">Yes</td>
+                        <td class="tData">{{tenant.month}}<span></span></td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="Bills" id="wifiBills">
+            <div class="b1" id="wifib1">
+                <i class="fa-solid fa-wifi"></i>
+                 Wifi Bills Paid: </div>
+            <div class="b2" id="wifib2">&#8369 <span>{{wifi_bills_paid}}</span></div>
+            <button class="viewButton" id="wifiButton" type="button">View</button>
+            <div class="viewInfo" id="wifiBillstbl">
+                <table>
+                    <tr class="tRow">
+                        <th class="tHeader">Name</th>
+                        <th class="tHeader">Unit</th>
+                        <th class="tHeader">Paid</th>
+                        <th class="tHeader">Month</th>
+                    </tr>
+                {% for tenant in paid_tenants_wi %}    
+                    <tr class="tRow">
+                        <td class="tData">{{tenant.name}}</td>
+                        <td class="tData">{{tenant.unit}}</td>
+                        <td class="tData">Yes</td>
+                        <td class="tData">{{tenant.month}}<span></span></td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- End of Billings -->
+
+    
+    <!-- <div class="otherInfo"></div> -->
+        
+        
+    <!-- <div id="info"> info</div>
+    <div></div> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+{% endblock %}
